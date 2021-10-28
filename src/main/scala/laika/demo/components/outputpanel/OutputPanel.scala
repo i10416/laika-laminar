@@ -20,7 +20,7 @@ object OutputPanel {
         className := OutputPanelStyle.title.className.value,
         "Output"
       ),
-      Menu(
+      OutputMenu(
         Seq(
           OutputFormat.RenderedHTML,
           OutputFormat.HTMLSource,

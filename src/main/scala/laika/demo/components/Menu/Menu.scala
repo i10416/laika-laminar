@@ -24,12 +24,18 @@ object Toggle {
   def apply(left: String, right: String, fmt: Var[MarkupFormat]) = div(
     className := MenuStyle.toggle.className.value,
     div(className := MenuStyle.left.className.value, left)
-      .amend(cls.toggle(MenuStyle.active.className.value) <-- fmt.signal.map(_ == Markdown))
+      .amend(
+        cls.toggle(MenuStyle.active.className.value) <-- fmt.signal
+          .map(_ == Markdown)
+      )
       .amendThis(thisNode =>
         thisNode.events(onClick).map(_ => Markdown) --> fmt
       ),
     div(className := MenuStyle.right.className.value, right)
-      .amend(cls.toggle(MenuStyle.active.className.value) <-- fmt.signal.map(_ == ReStructuredText))
+      .amend(
+        cls.toggle(MenuStyle.active.className.value) <-- fmt.signal
+          .map(_ == ReStructuredText)
+      )
       .amendThis(thisNode =>
         thisNode.events(onClick).map(_ => ReStructuredText) --> fmt
       )
@@ -45,48 +51,18 @@ object InputMenu {
   )
 }
 
-object Menu {
+object OutputMenu {
   def apply(
       formats: Seq[OutputFormat],
       format: Var[OutputFormat]
   ): ReactiveHtmlElement[org.scalajs.dom.html.Div] = div(
     className := MenuStyle.menu.className.value,
     formats.map {
-      case fmt @ RenderedHTML =>
-        Chip("Rendered HTML")
-          .amendThis(thisNode =>
-            thisNode.events(onClick).map(_ => fmt) --> format
-          )
+      case fmt @ OutputFormat(fmtname) =>
+        Chip(fmtname.split("-").map(_.capitalize).mkString(" "))
+          .amendThis(thisNode => thisNode.events(onClick).map(_ => fmt) -->format)
           .amend(
-            cls.toggle(MenuStyle.active.className.value) <-- format.signal
-              .map(_ == fmt)
-          )
-      case fmt @ HTMLSource =>
-        Chip("HTML Source")
-          .amendThis(thisNode =>
-            thisNode.events(onClick).map(_ => fmt) --> format
-          )
-          .amend(
-            cls.toggle(MenuStyle.active.className.value) <-- format.signal
-              .map(_ == fmt)
-          )
-      case fmt @ ResolvedAST =>
-        Chip("Resolved AST")
-          .amendThis(thisNode =>
-            thisNode.events(onClick).map(_ => fmt) --> format
-          )
-          .amend(
-            cls.toggle(MenuStyle.active.className.value) <-- format.signal
-              .map(_ == fmt)
-          )
-      case fmt @ UnresolvedAST =>
-        Chip("Unresolved AST")
-          .amendThis(thisNode =>
-            thisNode.events(onClick).map(_ => fmt) --> format
-          )
-          .amend(
-            cls.toggle(MenuStyle.active.className.value) <-- format.signal
-              .map(_ == fmt)
+            cls.toggle(MenuStyle.active.className.value) <-- format.signal.map(_ == fmt)
           )
     }
   )
