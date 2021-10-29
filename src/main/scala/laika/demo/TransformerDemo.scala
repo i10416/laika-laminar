@@ -39,19 +39,6 @@ object TransformerDemo {
   val root = div(
     className := AppStyle.root.className.value,
     NavBar(),
-    h1(
-      "Laika: Extensible Markup toolkit",
-      className := AppStyle.title.className.value
-    ),
-    p(
-      className := AppStyle.caption1.className.value,
-      strong("Laika"),
-      " is a customizable and extensible toolkit for transforming lightweight text markup and template based site and e-book generation."
-    ),
-    p(
-      className := AppStyle.caption2.className.value,
-      "Open-source Apache 2.0 License."
-    ),
     Togglable(
       left = InputPanel(userInput, inputMode),
       right = OutputPanel(result, outputMode)
@@ -81,19 +68,6 @@ object NavBar {
     h2(
       className := AppStyle.navBarTitle.className.value,
       "Laika Demo"
-    ),
-    div(
-      className := AppStyle.navLinks.className.value,
-      a(
-        className := AppStyle.linkButton.className.value,
-        "Docs",
-        href := "https://planet42.github.io/Laika/0.18/table-of-content.html"
-      ),
-      a(
-        className := AppStyle.linkButton.className.value,
-        "GitHub",
-        href := "https://github.com/planet42/Laika"
-      )
     )
   )
 }

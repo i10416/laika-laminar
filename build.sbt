@@ -1,3 +1,4 @@
+import dev.i10416.scalajsdevtool.BuildMode
 ThisBuild / scalaVersion := "2.13.6"
 ThisBuild / version := "0.0.1-SNAPSHOT"
 
@@ -9,6 +10,7 @@ lazy val client = project
     DevTool / baseHTML := Some(
       (Compile / resourceDirectory).value / "index.html"
     ),
+    mode := BuildMode.Prod,
     scalaJSUseMainModuleInitializer := true,
     libraryDependencies ++= Seq(
       "com.raquo" %%% "laminar" % "0.13.1",
