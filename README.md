@@ -15,7 +15,8 @@ This site is a live demo of how to build an interactive text editor powered by _
 
 As shown in example, you can convert markup text(GitHub flavored markdown and ReStructuredText) into html via internal AST. 
 
-It is not so hard to extend Laika to add some nice features like your own theme, pre/post processing or custom snippets! If you're interested in, visit Laika documentation https://planet42.github.io/Laika/
-
+You can try demo at https://i10416.github.io/demo/.
 
 <img width="1277" alt="image" src="https://user-images.githubusercontent.com/39330037/214340711-95cd92b7-1288-4219-87d4-c496fd446cbb.png">
+
+It is not so hard to extend Laika to add some nice features like your own theme, pre/post processing or custom snippets! If you're interested in, visit Laika documentation https://planet42.github.io/Laika/
